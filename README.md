@@ -4,7 +4,7 @@ Photovoltaic energy community savings calculation and tracking
 # Project Description
 Live [DEMO](https://hackaference.web.app/dashboard) in Czech
 
-The project was developed within the Hackaference 2022 framwork to respond to current energy communities challenges. It aims at presenting data in a simple form to the end users of the community. It consists of two parts:
+The project was developed within the [EGD Hackaference 2022](https://hackaference.impacthub.cz/) to respond to current energy communities challenges. It aims at presenting data in a simple form to the end users of the community. It consists of two parts:
 
 1) PV community savings calculator: Based on the location, basic technical specifications of the PV panels and annual electricity cost for each member of the community the project displays savings for each member of the community and in total.
 
