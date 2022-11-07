@@ -1,6 +1,6 @@
-import { InjectionToken } from "@angular/core";
-import { FirebaseOptions } from "firebase/app";
-import { environment } from "src/environments/environment";
+import { InjectionToken } from '@angular/core';
+import { FirebaseOptions } from 'firebase/app';
+import { environment } from 'src/environments/environment';
 
 export interface AppConfigF {
   configName: string;
@@ -20,12 +20,12 @@ export interface EnvironmentSettings {
 
 export const APP_TITLE = 'Hackaference 2022 (Cracking Bits)';
 export const CONFIG_FILENAME = '/assets/app-config.json';
-export const APP_CONFIG = new InjectionToken<AppConfig>("app.config");
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 
 const DEFAULT_CONFIG: AppConfig = {
   configName: 'configService',
   debug: false,
-  envName: ''
+  envName: '',
 };
 
 declare var require: (filename: string) => any;
@@ -136,6 +136,6 @@ export class ApplicationConfig {
   }
 
   get appFooter(): string {
-      return `\u00A92022 Cracking Bits s.r.o. / ${this.appName} v${this.appVersion}`;
+    return `${this.appName} v${this.appVersion}`;
   }
 }
