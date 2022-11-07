@@ -1,14 +1,18 @@
 # Hackaference 2022
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![ng build & deploy](https://github.com/CrackingBits/egd-hackathon-frontend/actions/workflows/firebase-hosting-pull-request.yml/badge.svg)](https://github.com/CrackingBits/egd-hackathon-frontend/actions/workflows/firebase-hosting-pull-request.yml) [![ng lint](https://github.com/CrackingBits/egd-hackathon-frontend/actions/workflows/ng-lint.yml/badge.svg)](https://github.com/CrackingBits/egd-hackathon-frontend/actions/workflows/ng-lint.yml) [![ng test](https://github.com/CrackingBits/egd-hackathon-frontend/actions/workflows/ng-test.yml/badge.svg)](https://github.com/CrackingBits/egd-hackathon-frontend/actions/workflows/ng-test.yml)
+
 Photovoltaic energy community savings calculation and tracking
 
 # Project Description
+
 Live [DEMO](https://hackaference.web.app/dashboard) in Czech
 
 The project was developed within the [EGD Hackaference 2022](https://hackaference.impacthub.cz/) to respond to current energy communities challenges. It aims at presenting data in a simple form to the end users of the community. It consists of two parts:
 
-1) PV community savings calculator: Based on the location, basic technical specifications of the PV panels and annual electricity cost for each member of the community the project displays savings for each member of the community and in total.
+1. PV community savings calculator: Based on the location, basic technical specifications of the PV panels and annual electricity cost for each member of the community the project displays savings for each member of the community and in total.
 
-2) PV community consumption tracking and savings (energy health index): The project displays aggregated data for the community and its members based on their energy consumption from PV and from the grid.
+2. PV community consumption tracking and savings (energy health index): The project displays aggregated data for the community and its members based on their energy consumption from PV and from the grid.
 
 The project is suitable for presenting data to the community users, such as collectives, etc.
 
@@ -41,11 +45,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 # Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 # Licence
+
 Distributed under the MIT license.
-
-
