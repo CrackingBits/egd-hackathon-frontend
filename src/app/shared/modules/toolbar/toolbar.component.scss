@@ -1,0 +1,17 @@
+.app-toolbar {
+  margin-bottom: 1em;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-toolbar .btn:disabled {
+  opacity: 0.4;
+}
+
+@media print {
+  .app-toolbar {
+    display: none !important;
+  }
+}

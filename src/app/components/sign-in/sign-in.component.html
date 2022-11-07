@@ -1,0 +1,36 @@
+<div class="form-signin text-center">
+  <form>
+    <ng-container *ngIf="!authService.isLoggedIn;else logout">
+      <img src="assets/images/EGD_Logo_hackaference.svg" alt="" width="280">
+
+      <div class="form-floating mt-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="novak@seznam.cz" #userName>
+        <label for="floatingInput">E-mail</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="heslo" #userPassword>
+        <label for="floatingPassword">Heslo</label>
+      </div>
+
+      <div class="d-grid gap-2">
+        <button class="w-100 btn btn-lg btn-primary" type="submit"
+          (click)="authService.SignIn(userName.value, userPassword.value); $event.preventDefault()">Přihlásit
+          emailem</button>
+
+        <div class="btn-group w-100" role="group">
+          <button type="button" class="btn btn-light btn-sm" routerLink="/sign/up">Registrace</button>
+          <button type="button" class="btn btn-light btn-sm" routerLink="/sign/forgot">Zapomenuté heslo</button>
+        </div>
+
+        <button type="button" class="w-100 btn btn-lg btn-primary" (click)="authService.GoogleAuth()">Google
+          přihlášení</button>
+        <button type="button" class="w-100 btn btn-lg btn-primary" (click)="authService.AnonymAuth()">Anonymní
+          uživatel</button>
+      </div>
+    </ng-container>
+    <ng-template #logout>
+      <button class="w-100 btn btn-lg btn-primary" type="submit"
+        (click)="authService.SignOut(); $event.preventDefault()">Odhlásit</button>
+    </ng-template>
+  </form>
+</div>

@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* change the colors */
+$primary: #271d62;
+$secondary: #0074d9;
+$danger: #cf2c17;
+$warning: #ff851b;
+$success: #2ecc40;
+$info: #7fdbff;
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: "Brix-sans";
+  src: url("/assets/fonts/EON_BrixSansWeb-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brix-sans";
+  src: url("/assets/fonts/EON_BrixSansWeb-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/*
+@font-face {
+  font-family: "Brix-sans";
+  src: url("/assets/fonts/EON_BrixSansWeb-Black.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+}*/
+
+html,
+body,
+.dx-theme-generic-typography {
+  font-family: "Brix-sans", sans-serif !important;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #261b62;
+}
+
+.dx-state-disabled .dx-widget,
+.dx-state-disabled.dx-widget {
+  opacity: 0.8;
+}

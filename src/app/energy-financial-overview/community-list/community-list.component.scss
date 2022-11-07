@@ -1,0 +1,11 @@
+h5.card-title {
+  position: relative;
+  z-index: 1;
+  white-space: pre-wrap;
+}
+
+dx-data-grid.move-up-relative {
+  position: relative;
+  top: -28px;
+  z-index: 0;
+}

@@ -1,0 +1,67 @@
+<nav *ngIf="authService.isLoggedIn" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container" *ngIf="authService.userData as user">
+    <a class="navbar-brand" [routerLink]="['/dashboard']"><img src="assets/images/EGD_Logo_hackaference.svg"
+        height="38"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsGuestCard"
+      aria-controls="navbarsGuestCard" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsGuestCard">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/calculation/detail/0']">Kalkulace</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/overview/for-manager/1']">Přehled</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/overview']">Komunita</a>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownUser" data-bs-toggle="dropdown"
+            aria-expanded="false">Přehled</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+            <li><a class="dropdown-item" [routerLink]="['overview/for-manager/1']">Manažerský</a></li>
+            <li><a class="dropdown-item" [routerLink]="['overview/for-user/1']">Jediné OM</a></li>
+            <li><a class="dropdown-item" [routerLink]="['overview']">Seznam komunit</a></li>
+            <div class="dropdown-divider"></div>
+            <li><a class="dropdown-item" [routerLink]="['calculation']">Všechny kalkulace</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownUser" data-bs-toggle="dropdown"
+            aria-expanded="false">Administrace</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+            <li><a class="dropdown-item" [routerLink]="['overview/community/list']">Editace komunit</a></li>
+            <li><a class="dropdown-item" [routerLink]="['user/list']">Editace uživatelů</a></li>
+            <div class="dropdown-divider"></div>
+            <li><a class="dropdown-item" [routerLink]="['user/detail']">{{ (user.displayName) ? user.displayName :
+                'Jméno Příjmení' }}</a></li>
+            <li><a class="dropdown-item" href="#" (click)="authService.SignOut(); $event.preventDefault()">Odhlásit</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form>
+        <a class="nav-link" href="#" (click)="print(); $event.preventDefault()" style="margin-right: 8px">Tisk</a>
+      </form>
+      <form>
+        <a class="nav-link" href="#" (click)="authService.SignOut(); $event.preventDefault()">Odhlásit</a>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<main class="container pt-4">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="container">
+  <p class="mt-5 mb-3 text-muted text-center small">{{ applicationConfig.appFooter }}</p>
+</footer>

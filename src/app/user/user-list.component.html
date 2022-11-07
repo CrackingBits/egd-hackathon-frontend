@@ -1,0 +1,56 @@
+<h2 class="content-block">{{ title }}</h2>
+
+<div class="alert alert-warning" role="alert">
+  Aplikace je nyní v režimu dema! <strong>Změny</strong> v uživatelských účtech již <strong>nelze
+    uložit</strong>!
+</div>
+
+<dx-data-grid [dataSource]="usersDataSource" [remoteOperations]="false">
+  <dxo-export fileName="users"></dxo-export>
+
+  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" [useIcons]="true">
+    <dxo-popup title="Editace uživatele" [showTitle]="true">
+    </dxo-popup>
+    <dxo-form [colCount]="2">
+      <dxi-item dataField="firstName" [colSpan]="1"></dxi-item>
+      <dxi-item dataField="lastName" [colSpan]="1"></dxi-item>
+      <dxi-item dataField="email" [colSpan]="2"></dxi-item>
+
+      <dxi-item dataField="role" [colSpan]="2" editorType="dxTagBox" [label]="{text: 'Role'}" [editorOptions]="{
+                  dataSource: committeeCandidatesDataSource,
+                  disabled: true,
+                  displayExpr: 'name', searchExpr: 'name', valueExpr: 'id',
+                  applyValueMode: 'useButtons', searchEnabled: true, showSelectionControls: true }">
+      </dxi-item>
+
+    </dxo-form>
+  </dxo-editing>
+
+
+  <dxi-column dataField="id" dataType="number" caption="Id" [allowEditing]="false" [visible]="true"
+    [formItem]="{ visible: false }" [width]="130">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+  </dxi-column>
+
+
+  <dxi-column dataField="firstName" dataType="string" caption="Jméno" [width]="130">
+  </dxi-column>
+
+  <dxi-column dataField="lastName" dataType="string" caption="Příjmení" [width]="130">
+  </dxi-column>
+
+  <dxi-column dataField="email" dataType="string" caption="E-mail">
+  </dxi-column>
+
+
+  <dxi-column dataField="role" caption="Role" dataType="object" [visible]="true"
+    cellTemplate="committeeMemberIdsTemplate" [allowEditing]="true" [allowFiltering]="false" [allowSearch]="false"
+    [allowSorting]="false" [width]="170">
+  </dxi-column>
+  <div *dxTemplate="let cellInfo of 'committeeMemberIdsTemplate'">
+    <dx-tag-box [value]="cellInfo.value" [dataSource]="committeeCandidatesDataSource" displayExpr="name"
+      searchExpr="name" valueExpr="id" [readOnly]="true">
+    </dx-tag-box>
+  </div>
+
+</dx-data-grid>

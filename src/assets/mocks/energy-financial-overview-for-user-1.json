@@ -1,0 +1,158 @@
+{
+  "collectionPoint": {
+    "id": 5,
+    "name": "OM05",
+    "costLowTarif": 3.9,
+    "costHighTarif": 5.9,
+    "powerMeterNumber": "5",
+    "distributionFactor": 0.2,
+    "energyCommunityId": 1,
+    "energyHealth": null,
+    "energyHealthLast3Months": null
+  },
+  "energyHealth": 89.41981396268271522233326378,
+  "energyHealthLast3Months": 81.75289385888087857221741375,
+  "energyConsumption": [
+    {
+      "date": "2022-10-26T00:00:00.000Z",
+      "consumption": 7.079,
+      "netPart": 2.70425,
+      "pvUsedPart": 4.37475,
+      "pvUnusedPart": 0.00000,
+      "pvPart": 4.37475,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-27T00:00:00.000Z",
+      "consumption": 5.408,
+      "netPart": 0.49625,
+      "pvUsedPart": 4.91175,
+      "pvUnusedPart": 0.00000,
+      "pvPart": 4.91175,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-28T00:00:00.000Z",
+      "consumption": 7.758,
+      "netPart": 6.398125,
+      "pvUsedPart": 1.359875,
+      "pvUnusedPart": 0.000000,
+      "pvPart": 1.359875,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-29T00:00:00.000Z",
+      "consumption": 6.984,
+      "netPart": 1.12725,
+      "pvUsedPart": 5.85675,
+      "pvUnusedPart": 0.00000,
+      "pvPart": 5.85675,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-30T00:00:00.000Z",
+      "consumption": 4.806,
+      "netPart": 0.000,
+      "pvUsedPart": 4.806,
+      "pvUnusedPart": 1.861125,
+      "pvPart": 6.667125,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-31T00:00:00.000Z",
+      "consumption": 9.536,
+      "netPart": 8.349625,
+      "pvUsedPart": 1.186375,
+      "pvUnusedPart": 0.000000,
+      "pvPart": 1.186375,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-11-01T00:00:00.000Z",
+      "consumption": 5.405,
+      "netPart": 1.112875,
+      "pvUsedPart": 4.292125,
+      "pvUnusedPart": 0.000000,
+      "pvPart": 4.292125,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-11-02T00:00:00.000Z",
+      "consumption": 3.746,
+      "netPart": 0.000,
+      "pvUsedPart": 3.746,
+      "pvUnusedPart": 1.751625,
+      "pvPart": 5.497625,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-11-03T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 7.4607500000000000000000000000
+    },
+    {
+      "date": "2022-11-04T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 6.14512500
+    },
+    {
+      "date": "2022-11-05T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 4.9086250000000000000000000000
+    },
+    {
+      "date": "2022-11-06T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 7.0382500000000000000000000000
+    },
+    {
+      "date": "2022-11-07T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 3.9540
+    },
+    {
+      "date": "2022-11-08T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 1.5812500000000000000000000000
+    },
+    {
+      "date": "2022-11-09T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 0.0
+    }
+  ],
+  "historyConsumptionSum": 50.722,
+  "historyNetPartSum": 20.188375,
+  "historyPvUsedPartSum": 30.533625,
+  "historyPvPartSum": 34.146375,
+  "historyPvUnusedPartSum": 3.612750,
+  "predictionPvProductionSum": 31.088000000000000000000000000
+}

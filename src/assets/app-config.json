@@ -1,0 +1,12 @@
+{
+  "localhost": {
+    "configName": "localhost",
+    "debug": true,
+    "envName": "DEV"
+  },
+  "default": {
+    "configName": "default",
+    "debug": false,
+    "envName": ""
+  }
+}

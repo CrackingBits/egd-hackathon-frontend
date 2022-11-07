@@ -1,0 +1,29 @@
+<h2 class="content-block">{{ title }}</h2>
+
+<app-loading [loading]="uiLoading"></app-loading>
+
+<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="!uiLoading && communityOverviewList">
+  <div class="col" *ngFor="let community of communityOverviewList">
+    <div class="card h-100">
+      <div class="card-header" style="font-size:larger;">
+        {{ community.name }}
+      </div>
+
+      <div class="card-body">
+
+        <span class="badge bg-secondary rounded-pill" style="font-size: 1.6em; margin: 0 8px 8px 0;"
+          *ngFor="let energyCommunityCollectionPoint of community.energyCommunityCollectionPoints">{{
+          energyCommunityCollectionPoint.name }}</span>
+
+        <span *ngIf="!community.energyCommunityCollectionPoints?.length" class="badge bg-light text-dark">Chybí
+          informace o odběrných místech
+        </span>
+
+      </div>
+
+      <div class="card-footer" *ngIf="community.energyCommunityCollectionPoints?.length">
+        Počet odběrných míst: <strong>{{ community.energyCommunityCollectionPoints?.length}}</strong>
+      </div>
+    </div>
+  </div>
+</div>

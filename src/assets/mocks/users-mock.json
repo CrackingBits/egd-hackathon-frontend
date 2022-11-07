@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "firstName": "Jan",
+      "lastName": "Polan",
+      "email": "janpolan@gmail.com"
+    },
+    {
+      "id": 3,
+      "firstName": "Michal",
+      "lastName": "Pirgl",
+      "email": "michal.pirgl@gmail.com"
+    },
+    {
+      "id": 9,
+      "firstName": "Jan",
+      "lastName": "Pirgl",
+      "email": "jpirgl@gmail.com"
+    },
+    {
+      "id": 10,
+      "firstName": "Franta",
+      "lastName": "Anonym",
+      "email": ""
+    }
+  ],
+  "totalCount": 4,
+  "groupCount": -1,
+  "summary": null
+}

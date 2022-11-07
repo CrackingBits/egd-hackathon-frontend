@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-lg-6 mb-4">
+    <div class="card">
+      <div class="card-header text-white"
+        style="background-image: url('assets/images/intro-bg-small.svg'); background-color: #261B62; min-height: 270px;">
+        <h2 class="card-title">Komunitní solární kalkulačka</h2>
+        <p class="card-text">Orientační kalkulace na webovém portálu.</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Pomůže potencionálním členům komunity
+          rozhodnout, zda komunitu vytvoří a posoudí výhodnost pro existující komunity.</p>
+
+        <div class="card-text">Pro vyplnění rámcové kalkulace FVE si, prosím, připravte: </div>
+        <ol>
+          <li>roční vyúčtování za jednotlivá odběrná místa, která plánují stát se součástí energetického společenství
+          </li>
+          <li>
+            základní technické informace o fotovoltaické elektrárně a jejím umístění (zde budete pravděpodobně
+            potřebovat pomoc odborné firmy)
+
+            <ul>
+              <li>typ panelu</li>
+              <li>výkon panelů (kWp)</li>
+              <li>sklon (stupně)</li>
+              <li>orientace na světovou stranu (stupně)</li>
+              <li>pořizovací náklady (Kč)</li>
+              <li>dotace (Kč)</li>
+              <li>životnost (roky)</li>
+
+            </ul>
+          </li>
+        </ol>
+
+        <button type="button" class="btn btn-primary btn-lg" routerLink="/calculation/detail/0"
+          style="z-index: 100">Vytvořit novou kalkulaci</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card-header text-white"
+        style="background-image: url('assets/images/intro-bg-small.svg'); background-color: #261B62; min-height: 270px;">
+        <h2 class="card-title">Index energetického zdraví</h2>
+        <p class="card-text">Přehled o výrobě FVE</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Přehled o využívání FVE v hodinových intervalech, o hodinovém odběru jednotlivých
+          odběrných míst, o přetoku do sítě / odběru ze sítě, o využitelnosti sdílení elektřiny za celou
+          energetickou komunitu i za jednotlivá přidružená odběrná místa.</p>
+
+        <button type="button" class="btn btn-primary btn-lg" routerLink="/overview/for-manager/1">Informace o
+          zdraví</button>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header text-white" style="background-color: #261B62; min-height: 100px;">
+        <h2 class="card-title" style="font-size: 36px;">Energetické komunity</h2>
+        <p class="card-text">Podpora decentralizace energetiky a vytváření energetických komunit</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Analýza potřeby a potenciál společenství vlastníků ve vztahu ke komunitní energetice, sledování vývoje
+          situace.
+        </p>
+
+        <div class="btn-group flex-wrap" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-light btn" routerLink="/overview/for-manager/1">Info o spotřebě
+            energetické
+            komunity</button>
+          <button type="button" class="btn btn-light btn" routerLink="/overview/for-user/1">Detail spotřeby OM</button>
+          <button type="button" class="btn btn-light btn" routerLink="/overview">Seznam komunit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

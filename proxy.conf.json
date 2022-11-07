@@ -1,0 +1,9 @@
+{
+    "/api": {
+        "target": "https://re.jrc.ec.europa.eu",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "ws": true
+    }
+}

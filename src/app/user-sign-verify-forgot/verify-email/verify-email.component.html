@@ -1,0 +1,21 @@
+<div class="form-verify text-center">
+  <form>
+    <img class="mb-4" src="assets/images/logo-hackaference.png" alt="" width="280">
+
+    <p>Díky za registraci!</p>
+    <div class="formGroup" *ngIf="authService.userData as user">
+      <p class="text-center">Vyslali jsme potvrzující e-mail na <strong>{{user.email}}</strong>.</p>
+      <p class="text-center">Je to odkaz na který je potřeba kliknout!</p>
+    </div>
+
+    <div class="d-grid gap-2">
+      <button class="w-100 btn btn-lg btn-primary" type="submit"
+        (click)="authService.SendVerificationMail(); $event.preventDefault()">Znovu odeslat e-mail</button>
+
+      <div class="redirectToLogin">
+        <span>Chceš pryč? <button type="button" class="btn btn-light btn-sm" routerLink="/sign-in">Zpět na
+            přihlášení</button></span>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,137 @@
+<h2 class="content-block">{{ title }}</h2>
+
+<app-loading [loading]="uiLoading"></app-loading>
+
+<div *ngIf="!uiLoading">
+
+  <h2><span class="badge text-dark bg-light">{{ consumptionUserData.energyCommunity.name }}</span></h2>
+
+  <div class="row mb-5">
+    <div class="col">
+      <dx-chart id="chart" title="Využití solární energie v čase za posledních 7 dní"
+        [dataSource]="consumptionUserData.energyConsumption">
+        <dxi-series valueField="pvPart" name="Výroba solární energie" color="#2ECC40"></dxi-series>
+        <dxi-series valueField="pvUsedPart" name="Využití solární energie" color="#0074D9"></dxi-series>
+        <dxi-series valueField="pvPrediction" name="Předpověď výroby solární energie" color="#01FF70">
+        </dxi-series>
+        <dxi-value-axis position="left">
+          <dxo-title text="kWh"></dxo-title>
+        </dxi-value-axis>
+        <dxo-common-series-settings argumentField="date" type="bar" hoverMode="allArgumentPoints"
+          selectionMode="allArgumentPoints">
+          <dxo-argument-axis>
+            <dxo-label>
+              <dxo-format type="monthAndDay">
+              </dxo-format>
+            </dxo-label>
+          </dxo-argument-axis>
+        </dxo-common-series-settings>
+        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+        </dxo-legend>
+        <dxo-export [enabled]="false"></dxo-export>
+
+        <dxo-argument-axis argumentType="datetime">
+          <dxo-label>
+            <dxo-format type="monthAndDay">
+            </dxo-format>
+          </dxo-label>
+        </dxo-argument-axis>
+
+      </dx-chart>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div style="font-size: 28px; line-height: normal; color: #261b62; margin-bottom: 12px;">Efektivita využití
+        vyrobené
+        sol. en.
+      </div>
+
+      <div style="font-size: 80px; line-height: normal; text-align: center; padding: 28px 0; background-color: #eee;"
+        class="border rounded">{{
+        consumptionUserData.energyHealth |
+        number:'1.2-2':'cs'
+        }}%</div>
+
+    </div>
+    <div class="col-lg-8">
+
+      <dx-pie-chart id="pie" title="Rozložení spotřebované energie" [dataSource]="areas"
+        [palette]="['#FF4136', '#0074D9']">
+
+        <dxi-series argumentField="name" valueField="value">
+          <dxo-label [visible]="true" position="inside" alignment="center" [customizeText]="customizeLabel">
+            <dxo-font [size]="28"></dxo-font>
+            <dxo-connector [visible]="true" [width]="0.5"></dxo-connector>
+          </dxo-label>
+        </dxi-series>
+
+        <dxo-legend position="outside" horizontalAlignment="center" verticalAlignment="bottom">
+        </dxo-legend>
+      </dx-pie-chart>
+
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg">
+
+      <h3>Přehled odběrných míst</h3>
+      <p>Efektivita využívání solární energie</p>
+
+      <dx-data-grid [dataSource]="consumptionUserData.energyCommunity.energyCommunityCollectionPoints || []"
+        (onToolbarPreparing)="onToolbarPreparing($event)">
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-header-filter [visible]="false"></dxo-header-filter>
+        <dxo-column-chooser [enabled]="false"></dxo-column-chooser>
+        <dxo-export [enabled]="false"></dxo-export>
+        <dxo-search-panel [visible]="false"></dxo-search-panel>
+
+        <dxi-column dataField="id" dataType="number" caption="OM" [allowEditing]="false" [formItem]="{ visible: false }"
+          [width]="70" [visible]="false">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="name" dataType="string" caption="Název OM">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+
+        <dxi-column dataField="energyHealth" dataType="number" caption="7-denní efektivita">
+          <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+        </dxi-column>
+
+        <dxi-column dataField="energyHealthLast3Months" dataType="number" caption="3-měsíční efektivita">
+          <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+        </dxi-column>
+
+        <dxi-column dataField="distributionFactor" dataType="number" caption="Koef. distribuce FVE (%)"
+          cellTemplate="cellTemplate2">
+          <dxo-format type="fixedPoint" [precision]="1"></dxo-format>
+
+          <div *dxTemplate="let data of 'cellTemplate2'" [innerHTML]="data.value"
+            [ngClass]="{'d-none': data.rowIndex === 0}"></div>
+        </dxi-column>
+
+        <dxi-column dataField="powerMeterNumber" dataType="string" caption="Číslo elektroměru" [width]="100">
+        </dxi-column>
+
+        <dxi-column dataField="costHighTarif" dataType="number" caption="Sazba VT / jednotarif (Kč/kWh)" [width]="140">
+          <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+        </dxi-column>
+
+        <dxi-column dataField="costLowTarif" dataType="number" caption="Sazba NT (Kč/kWh)" [width]="140">
+          <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+        </dxi-column>
+
+        <dxo-summary>
+          <dxi-total-item column="name" summaryType="count" displayFormat="{0}x">
+          </dxi-total-item>
+        </dxo-summary>
+      </dx-data-grid>
+
+
+    </div>
+  </div>
+
+</div>

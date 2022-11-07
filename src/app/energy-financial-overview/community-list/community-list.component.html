@@ -1,0 +1,63 @@
+<h2 class="content-block">{{ title }}</h2>
+
+<div class="alert alert-warning" role="alert">
+  Aplikace je nyní v režimu dema! <strong>Změny</strong> v komunitách <strong>nelze
+    uložit</strong>!
+</div>
+
+<dx-data-grid id="gridContainer" [dataSource]="communityStore" [remoteOperations]="false">
+  <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+  </dxo-editing>
+
+  <dxi-column dataField="id" dataType="number" [width]="70" caption="Id" [allowEditing]="false" [visible]="false"
+    [formItem]="{ visible: false }">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+  </dxi-column>
+
+  <dxi-column dataField="name" dataType="string" caption="Název komunity">
+  </dxi-column>
+
+  <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+  <div *dxTemplate="let collection of 'detail'">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Seznam OM komunity</h5>
+
+        <dx-data-grid [dataSource]="communityCollectionStore" [columnAutoWidth]="true"
+          (onToolbarPreparing)="onToolbarPreparing($event)" (onInitNewRow)="onInitNewRow($event, collection.data.id)"
+          [filterSyncEnabled]="true" class="move-up-relative">
+          <!-- Filtrovani i nad schovany sloupcem energyCommunityId https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#filterSyncEnabled -->
+          <dxo-group-panel [visible]="false"></dxo-group-panel>
+          <dxo-header-filter [visible]="false"></dxo-header-filter>
+          <dxo-column-chooser [enabled]="false"></dxo-column-chooser>
+          <dxo-export [enabled]="false"></dxo-export>
+          <dxo-search-panel [visible]="false"></dxo-search-panel>
+
+          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"
+            [useIcons]="true">
+          </dxo-editing>
+
+          <dxi-column dataField="id" dataType="number" [allowEditing]="false" [visible]="false"
+            [formItem]="{ visible: false }">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+          </dxi-column>
+
+          <dxi-column dataField="energyCommunityId" dataType="number" [filterValue]="collection.data.id"
+            [allowEditing]="false" [visible]="false" [formItem]="{ visible: false }">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+          </dxi-column>
+
+          <dxi-column dataField="name" dataType="string" caption="Název OM"></dxi-column>
+          <dxi-column dataField="powerMeterNumber" dataType="string" caption="Číslo elektroměru"></dxi-column>
+          <dxi-column dataField="costHighTarif" dataType="number" caption="Sazba VT / jednotarif (Kč/kWh)"></dxi-column>
+          <dxi-column dataField="costLowTarif" dataType="number" caption="Sazba NT (Kč/kWh)"></dxi-column>
+          <dxi-column dataField="distributionFactor" dataType="number" caption="Koef. distribuce FVE (%)"></dxi-column>
+
+
+        </dx-data-grid>
+
+      </div>
+    </div>
+
+  </div>
+</dx-data-grid>

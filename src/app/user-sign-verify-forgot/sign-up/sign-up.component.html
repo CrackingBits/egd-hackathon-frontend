@@ -1,0 +1,25 @@
+<div class="form-signup text-center">
+  <form>
+      <img class="mb-4" src="assets/images/logo-hackaference.png" alt="" width="280">
+
+      <p class="text-center">Vítej na registraci :)</p>
+
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="novak@seznam.cz" #userEmail required >
+        <label for="floatingInput">E-mail</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="heslo" #userPwd required>
+        <label for="floatingPassword">Heslo</label>
+      </div>
+
+      <div class="d-grid gap-2">
+        <button class="w-100 btn btn-lg btn-primary" type="submit"
+          (click)="authService.SignUp(userEmail.value, userPwd.value); $event.preventDefault()">Zaregistrovat</button>
+
+        <div class="redirectToLogin">
+            <span>Chyba lávky? <button type="button" class="btn btn-light btn-sm" routerLink="/sign-in">Zpět na přihlášení</button></span>
+        </div>
+      </div>
+  </form>
+</div>

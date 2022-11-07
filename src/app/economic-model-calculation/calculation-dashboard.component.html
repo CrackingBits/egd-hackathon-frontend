@@ -1,0 +1,58 @@
+<h2 class="content-block">{{ title }}</h2>
+
+<div class="row">
+  <div class="mb-3 col-lg-6">
+
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Vytvoření nové kalkulace</h3>
+        <p class="card-text">Pro vytvoření nové kalkulace je potřeba vyplnit formulář.</p>
+
+        <button type="button" class="btn btn-primary btn-lg" routerLink="/calculation/detail/0">Vytvořit</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="mb-3 col-lg-6">
+
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Seznam hotových kalkulací</h3>
+
+        <div class="alert alert-warning" role="alert">
+          Aplikace je nyní v režimu dema! <strong>Změny</strong> v hotových kalkulacích <strong>nelze
+            uložit</strong>!
+        </div>
+
+        <dx-data-grid [dataSource]="calculationsDataSource" [remoteOperations]="false"
+          (onInitNewRow)="addCalculation()">
+          <dxo-editing mode="form" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="false"
+            [useIcons]="true">
+          </dxo-editing>
+
+          <dxo-export fileName="calculations"></dxo-export>
+
+          <dxi-column dataField="id" dataType="number" [width]="70" caption="Id" [allowEditing]="false" [visible]="true"
+            [formItem]="{ visible: false }">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+          </dxi-column>
+
+          <dxi-column dataField="communityName" dataType="string" caption="Název">
+          </dxi-column>
+
+          <dxi-column dataField="revisionDate" dataType="date" [width]="120" caption="Datum" format="HH:mm dd.MM."
+            sortOrder="desc">
+          </dxi-column>
+
+          <dxi-column type="buttons" [showInColumnChooser]="false">
+            <dxi-button name="edit" [onClick]="editCalculation"></dxi-button>
+            <dxi-button name="delete"></dxi-button>
+          </dxi-column>
+
+        </dx-data-grid>
+
+      </div>
+    </div>
+
+  </div>
+</div>

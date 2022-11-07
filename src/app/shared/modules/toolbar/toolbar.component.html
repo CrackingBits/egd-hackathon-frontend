@@ -1,0 +1,35 @@
+<div class="app-toolbar">
+  <div *ngIf="primaryButtons" class="btn-group flex-wrap" data-toggle="buttons">
+
+    <button *ngIf="newButton" type="button" class="btn btn-outline-primary" (click)="clickNew($event)"
+      [disabled]="unlocked">
+      <i class="fa fa-fw fa-file"></i> Nová
+    </button>
+    <button type="button" class="btn btn-outline-success" (click)="onClickSave($event)"
+      [disabled]="!unlocked || formPristine || formInvalid">
+      <i class="fa fa-fw fa-save"></i> Uložit
+    </button>
+    <button *ngIf="unlocked" type="button" class="btn btn-outline-warning" (click)="clickReset($event)">
+      <i class="fa fa-fw fa-undo"></i> Zrušit
+    </button>
+    <button *ngIf="!unlocked" type="button" class="btn btn-outline-primary" (click)="clickUnlock($event)">
+      <i class="fa fa-fw fa-pencil"></i> Odemkni
+    </button>
+    <button *ngIf="deleteButton" type="button" class="btn btn-outline-primary" (click)="clickDelete($event)"
+      [disabled]="unlocked">
+      <i class="fa fa-fw fa-trash"></i> Smaž
+    </button>
+    <button type="button" class="btn btn-outline-secondary" (click)="clickPrint($event)">
+      <i class="fa fa-fw fa-print"></i> Print
+    </button>
+
+    <ng-container *ngIf="customButtons">
+      <ng-container *ngFor="let customButton of customButtons">
+        <button type="button" class="btn btn-outline-secondary" (click)="clickCustom(customButton.key)"
+          [disabled]="false">
+          <i class="fa fa-fw {{customButton?.icon}}"></i> {{ customButton.title }}
+        </button>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

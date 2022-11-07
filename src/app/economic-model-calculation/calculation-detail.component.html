@@ -1,0 +1,364 @@
+<h2 class="content-block">{{ title }}
+  <span class="badge bg-warning" *ngIf="calculationId === 0">NOVÁ KALKULACE</span>
+  <span class="badge bg-primary" *ngIf="calculationId > 0" style="top: -2px; position: relative;">#{{ calculationId
+    }}</span>
+</h2>
+
+<div class="alert alert-warning" role="alert">
+  Aplikace je nyní v režimu dema! Data jsou přepočítána pomocí <strong>API</strong> systému <a
+    href="https://re.jrc.ec.europa.eu/pvg_tools/en/" target="_blank">GEOGRAPHICAL
+    INFORMATION SYSTEM</a>, ale výsledky nejsou uloženy mezi ostatní kalkulace!
+</div>
+
+<app-loading [loading]="uiLoading"></app-loading>
+
+<form *ngIf="!uiLoading && calculationObj" #calculationDetailForm="ngForm">
+  <h3 class="mt-4">Vstupní hodnoty</h3>
+
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+          aria-expanded="true" aria-controls="collapseOne">
+          Základní info
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+        <div class="accordion-body">
+
+          <div class="row">
+            <div class="col-lg-6">
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" [(ngModel)]="calculationObj.communityName" class="form-control"
+                  id="communityName" name="communityName" placeholder="SVJ identifikátor">
+                <label for="communityName">Název společenství</label>
+              </div>
+
+            </div>
+            <div class="col-lg-6">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button" [ngClass]="{'collapsed': !isAccordionOpen}" type="button"
+          data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-controls="collapseTwo">
+          Lokalita
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+        [ngClass]="{'show': isAccordionOpen}">
+        <div class="accordion-body">
+
+          <div class="mb-3">
+            <dx-map [height]="350" width="100%" [controls]="true" [apiKey]="apiKeyObj" [zoom]="7" [autoAdjust]="false"
+              [markers]="mapMarkers" [center]="centerCoordinates" (onClick)="clickMap($event)">
+            </dx-map>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" [(ngModel)]="calculationObj.locationGps" class="form-control"
+              id="communitylocationGpsame" name="locationGps" placeholder="GPS">
+            <label for="locationGps">Umístění objektu kalkulace (lat, lng)</label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button" [ngClass]="{'collapsed': !isAccordionOpen}" type="button"
+          data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-controls="collapseThree">
+          Odběrná místa komunity
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+        [ngClass]="{'show': isAccordionOpen}">
+        <div class="accordion-body">
+
+          <dx-data-grid [dataSource]="calculationObj.collectionPoints || []"
+            (onToolbarPreparing)="onToolbarPreparing($event)">
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-header-filter [visible]="false"></dxo-header-filter>
+            <dxo-column-chooser [enabled]="false"></dxo-column-chooser>
+            <dxo-export [enabled]="false"></dxo-export>
+            <dxo-search-panel [visible]="false"></dxo-search-panel>
+
+            <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"
+              [useIcons]="true">
+            </dxo-editing>
+
+            <dxi-column dataField="id" dataType="number" caption="OM" [allowEditing]="false"
+              [formItem]="{ visible: false }" cellTemplate="cellTemplate" [width]="70">
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+
+              <div *dxTemplate="let data of 'cellTemplate'">
+                <span *ngIf="data.rowIndex === 0">VOM</span>
+                <span *ngIf="data.rowIndex > 0">POM{{ pad(data.rowIndex, 2) }}</span>
+              </div>
+            </dxi-column>
+
+
+
+            <dxi-column dataField="name" dataType="string" caption="Název OM">
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+
+            <dxi-column dataField="distributionFactor" dataType="number" caption="Koef. distribuce FVE (%)"
+              cellTemplate="cellTemplate2" [width]="130">
+              <dxo-format type="fixedPoint" [precision]="1"></dxo-format>
+
+              <div *dxTemplate="let data of 'cellTemplate2'" [innerHTML]="data.value"
+                [ngClass]="{'d-none': data.rowIndex === 0}"></div>
+            </dxi-column>
+
+            <dxi-column dataField="costHighTarif" dataType="number" caption="Sazba VT / jednotarif (Kč/kWh)"
+              [width]="130">
+              <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+            </dxi-column>
+
+            <dxi-column dataField="costLowTarif" dataType="number" caption="Sazba NT (Kč/kWh)" [width]="130">
+              <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+            </dxi-column>
+
+            <dxi-column dataField="fixedMonthlyPayment" dataType="number" caption="Stálý plat (Kč/měs)" [width]="130">
+              <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+            </dxi-column>
+
+            <dxi-column dataField="consumptionHighTarif" dataType="number"
+              caption="Roční spotřeba VT / jednotarif (MWh)" [width]="130">
+              <dxo-format type="fixedPoint" [precision]="3"></dxo-format>
+            </dxi-column>
+
+            <dxi-column dataField="consumptionLowTarif" dataType="number" caption="Roční spotřeba NT (MWh)"
+              [width]="130">
+              <dxo-format type="fixedPoint" [precision]="3"></dxo-format>
+            </dxi-column>
+          </dx-data-grid>
+
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button" [ngClass]="{'collapsed': !isAccordionOpen}" type="button"
+          data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-controls="collapseFour">
+          Údaje o FVE
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+        [ngClass]="{'show': isAccordionOpen}">
+        <div class="accordion-body">
+
+          <div class="row">
+            <div class="mb-3 col-lg-6">
+              <label for="pvType" class="form-label">Typ panelu</label>
+              <select class="form-select" name="pvType" [(ngModel)]="calculationObj.pvType"
+                aria-describedby="pvType-help">
+                <option value="CrystallineSilicon">Krystalický křemík</option>
+                <option value="CIS">CIS</option>
+                <option value="CdTe">CdTe</option>
+                <option value="Unknown">Neznámý</option>
+              </select>
+
+              <div id="pvType-help" class="form-text">Technologie panelu</div>
+            </div>
+
+
+            <div class="mb-3 col-lg-6">
+              <label for="pvPeakPower" class="form-label">Výkon panelů (kWp)</label>
+              <input type="number" [(ngModel)]="calculationObj.pvPeakPower" class="form-control" id="pvPeakPower"
+                name="pvPeakPower" aria-describedby="pvPeakPower-help">
+              <div id="pvPeakPower-help" class="form-text">Špičkový výkon solárních panelů</div>
+            </div>
+
+            <div class="mb-3 col-lg-6">
+              <label for="slope" class="form-label">Sklon (stupně)</label>
+              <input type="number" [(ngModel)]="calculationObj.slope" class="form-control" id="slope" name="slope"
+                aria-describedby="slope-help">
+              <div id="slope-help" class="form-text"></div>
+            </div>
+
+            <div class="mb-3 col-lg-6">
+              <label for="azimut" class="form-label">Orientace na světovou stranu (stupně)</label>
+              <input type="number" [(ngModel)]="calculationObj.azimut" class="form-control" id="azimut" name="azimut"
+                aria-describedby="azimut-help">
+              <div id="azimut-help" class="form-text"></div>
+            </div>
+
+            <div class="mb-3 col-lg-6">
+              <label for="pvSystemCost" class="form-label">Pořizovací náklady (Kč)</label>
+              <input type="number" [(ngModel)]="calculationObj.pvSystemCost" class="form-control" id="pvSystemCost"
+                name="pvSystemCost" aria-describedby="pvSystemCost-help">
+              <div id="pvSystemCost-help" class="form-text"></div>
+            </div>
+
+            <div class="mb-3 col-lg-6">
+              <label for="grant" class="form-label">Dotace (Kč)</label>
+              <input type="number" [(ngModel)]="calculationObj.grant" class="form-control" id="grant" name="grant"
+                aria-describedby="grant-help">
+              <div id="grant-help" class="form-text"></div>
+            </div>
+
+            <div class="mb-3 col-lg-6">
+              <label for="lifetime" class="form-label">Životnost (roky)</label>
+              <input type="number" [(ngModel)]="calculationObj.lifetime" class="form-control" id="lifetime"
+                name="lifetime" aria-describedby="lifetime-help">
+              <div id="lifetime-help" class="form-text"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4"></div>
+  <button type="button" class="btn btn-primary btn-lg" (click)="clickCustom('calculate')">Uložit a přepočítat</button>
+
+  <div *ngIf="calculationObj.id">
+
+    <h3 class="mt-4">Zhodnocení plánované investice do FVE</h3>
+
+    <div class="row row-cols-1 row-cols-md-3 mt-4 mb-3 text-center">
+
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-secondary">
+          <div class="card-header py-3 text-bg-secondary border-secondary">
+            <h4 class="my-0 fw-normal">Roční úspora</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ calculationObj.yearlySaving | number:'4.2-2':'cs' }}
+              <small class="text-muted fw-light">Kč</small>
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Návratnost investice</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ calculationObj.pvSystemPaybackYears }} <small
+                class="text-muted fw-light"> roků</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Výnos z prodeje do sítě</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              {{ calculationObj.yearlyPvEnergyProductionExportPrise | number:'4.2-2':'cs' }}
+              <small class="text-muted fw-light"> Kč</small>
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Předpoklad výroby</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ calculationObj.yearlyPvEnergyProduction | number:'4.2-2':'cs'
+              }}
+              <small class="text-muted fw-light">MWh</small>
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Předpoklad výkyvu výkonu</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              {{ calculationObj.yearToYearVariability | number:'4.2-2':'cs' }}
+              <small class="text-muted fw-light"> MWh</small>
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Předpokládaný prodej</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              {{ calculationObj.yearlyPvEnergyProductionExport | number:'4.2-2':'cs' }}
+              <small class="text-muted fw-light"> MWh</small>
+            </h1>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <h3 class="mt-4">Roční úspory na jednotlivých OM</h3>
+    <dx-data-grid [dataSource]="calculationObj.collectionPoints || []" [disabled]="true"
+      (onToolbarPreparing)="onToolbarPreparing($event)">
+      <dxo-group-panel [visible]="false"></dxo-group-panel>
+      <dxo-header-filter [visible]="false"></dxo-header-filter>
+      <dxo-column-chooser [enabled]="false"></dxo-column-chooser>
+      <dxo-export [enabled]="false"></dxo-export>
+      <dxo-search-panel [visible]="false"></dxo-search-panel>
+
+      <dxi-column dataField="id" dataType="number" caption="OM" [allowEditing]="false" [formItem]="{ visible: false }"
+        cellTemplate="cellTemplate" [width]="70">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <span *ngIf="data.rowIndex === 0">VOM</span>
+          <span *ngIf="data.rowIndex > 0">POM{{ pad(data.rowIndex, 2) }}</span>
+        </div>
+      </dxi-column>
+
+
+      <dxi-column dataField="name" dataType="string" caption="Název">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+
+      <dxi-column dataField="saving" dataType="currency" caption="Roční úspora [Kč]" [width]="130">
+        <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+      </dxi-column>
+
+      <dxi-column dataField="costBefor" dataType="currency" caption="Nákl. před FVE [Kč]" [width]="140">
+        <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+      </dxi-column>
+
+      <dxi-column dataField="costAfter" dataType="currency" caption="Nákl. s FVE [Kč]" [width]="140">
+        <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+      </dxi-column>
+
+      <!-- https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxDataGrid/Configuration/summary/totalItems/ -->
+      <dxo-summary>
+        <dxi-total-item column="name" summaryType="count" displayFormat="{0}x">
+        </dxi-total-item>
+        <dxi-total-item column="saving" summaryType="sum" displayFormat="{0} Kč"
+          [valueFormat]="{ type: 'fixedPoint', precision: 0 }"></dxi-total-item>
+        <dxi-total-item column="costBefor" summaryType="sum" displayFormat="{0} Kč"
+          [valueFormat]="{ type: 'fixedPoint', precision: 0 }"></dxi-total-item>
+        <dxi-total-item column="costAfter" summaryType="sum" displayFormat="{0} Kč"
+          [valueFormat]="{ type: 'fixedPoint', precision: 0 }"></dxi-total-item>
+      </dxo-summary>
+
+    </dx-data-grid>
+
+  </div>
+
+</form>

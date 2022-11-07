@@ -1,0 +1,230 @@
+{
+  "energyCommunity": {
+    "id": 1,
+    "name": "1. bytový dům SN ELM 1-7",
+    "energyCommunityCollectionPoints": [
+      {
+        "id": 1,
+        "name": "OM01",
+        "costLowTarif": 3.8,
+        "costHighTarif": 5.4,
+        "powerMeterNumber": "1",
+        "distributionFactor": 0.001,
+        "energyCommunityId": 1,
+        "energyHealth": 100,
+        "energyHealthLast3Months": 100
+      },
+      {
+        "id": 2,
+        "name": "OM02",
+        "costLowTarif": 4.3,
+        "costHighTarif": 4.3,
+        "powerMeterNumber": "2",
+        "distributionFactor": 0.15,
+        "energyCommunityId": 1,
+        "energyHealth": 9.31675275437973528180761013,
+        "energyHealthLast3Months": 6.28816992943672948501397311
+      },
+      {
+        "id": 3,
+        "name": "OM03",
+        "costLowTarif": 4.3,
+        "costHighTarif": 4.3,
+        "powerMeterNumber": "3",
+        "distributionFactor": 0.1,
+        "energyCommunityId": 1,
+        "energyHealth": 100,
+        "energyHealthLast3Months": 92.84802072123669929294044828
+      },
+      {
+        "id": 4,
+        "name": "OM04",
+        "costLowTarif": 4.3,
+        "costHighTarif": 4.3,
+        "powerMeterNumber": "4",
+        "distributionFactor": 0.15,
+        "energyCommunityId": 1,
+        "energyHealth": 100,
+        "energyHealthLast3Months": 96.76228536303685459092166013
+      },
+      {
+        "id": 5,
+        "name": "OM05",
+        "costLowTarif": 3.9,
+        "costHighTarif": 5.9,
+        "powerMeterNumber": "5",
+        "distributionFactor": 0.2,
+        "energyCommunityId": 1,
+        "energyHealth": 89.41981396268271522233326378,
+        "energyHealthLast3Months": 81.75289385888087857221741375
+      },
+      {
+        "id": 6,
+        "name": "OM06",
+        "costLowTarif": 4.9,
+        "costHighTarif": 5.1,
+        "powerMeterNumber": "6",
+        "distributionFactor": 0.15,
+        "energyCommunityId": 1,
+        "energyHealth": 100,
+        "energyHealthLast3Months": 99.49379764062357761232064895
+      },
+      {
+        "id": 13,
+        "name": "OM07",
+        "costLowTarif": 3,
+        "costHighTarif": 4,
+        "powerMeterNumber": "7",
+        "distributionFactor": 0.1,
+        "energyCommunityId": 1,
+        "energyHealth": 0,
+        "energyHealthLast3Months": 0
+      }
+    ]
+  },
+  "energyHealth": 71.248080959580350072020124844,
+  "energyHealthLast3Months": 68.16359535903067707905916346,
+  "energyConsumption": [
+    {
+      "date": "2022-10-26T00:00:00.000Z",
+      "consumption": 40.077,
+      "netPart": 26.61487625,
+      "pvUsedPart": 13.46212375,
+      "pvUnusedPart": 5.15243750,
+      "pvPart": 18.61456125,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-27T00:00:00.000Z",
+      "consumption": 40.707,
+      "netPart": 25.66419125,
+      "pvUsedPart": 15.04280875,
+      "pvUnusedPart": 5.85668750,
+      "pvPart": 20.89949625,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-28T00:00:00.000Z",
+      "consumption": 42.375,
+      "netPart": 38.017575625,
+      "pvUsedPart": 4.357424375,
+      "pvUnusedPart": 1.428843750,
+      "pvPart": 5.786268125,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-29T00:00:00.000Z",
+      "consumption": 43.626,
+      "netPart": 25.72246625,
+      "pvUsedPart": 17.90353375,
+      "pvUnusedPart": 7.01693750,
+      "pvPart": 24.92047125,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-30T00:00:00.000Z",
+      "consumption": 38.471,
+      "netPart": 20.018414375,
+      "pvUsedPart": 18.452585625,
+      "pvUnusedPart": 9.916031250,
+      "pvPart": 28.368616875,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-10-31T00:00:00.000Z",
+      "consumption": 42.265,
+      "netPart": 38.408943125,
+      "pvUsedPart": 3.856056875,
+      "pvUnusedPart": 1.191968750,
+      "pvPart": 5.048025625,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-11-01T00:00:00.000Z",
+      "consumption": 41.682,
+      "netPart": 28.492164375,
+      "pvUsedPart": 13.189835625,
+      "pvUnusedPart": 5.073156250,
+      "pvPart": 18.262991875,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-11-02T00:00:00.000Z",
+      "consumption": 29.522,
+      "netPart": 14.403261875,
+      "pvUsedPart": 15.118738125,
+      "pvUnusedPart": 8.273656250,
+      "pvPart": 23.392394375,
+      "pvPrediction": null
+    },
+    {
+      "date": "2022-11-03T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 31.745491250000000000000000000
+    },
+    {
+      "date": "2022-11-04T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 26.1475068750
+    },
+    {
+      "date": "2022-11-05T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 20.886199375000000000000000000
+    },
+    {
+      "date": "2022-11-06T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 29.947753750000000000000000000
+    },
+    {
+      "date": "2022-11-07T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 16.824270
+    },
+    {
+      "date": "2022-11-08T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 6.7282187500000000000000000000
+    },
+    {
+      "date": "2022-11-09T00:00:00.000Z",
+      "consumption": 0,
+      "netPart": 0,
+      "pvUsedPart": 0,
+      "pvUnusedPart": 0,
+      "pvPart": 0,
+      "pvPrediction": 0.000
+    }
+  ],
+  "historyConsumptionSum": 318.725,
+  "historyNetPartSum": 217.341893125,
+  "historyPvUsedPartSum": 101.383106875,
+  "historyPvPartSum": 145.292825625,
+  "historyPvUnusedPartSum": 43.909718750,
+  "predictionPvProductionSum": 132.27944000000000000000000000
+}

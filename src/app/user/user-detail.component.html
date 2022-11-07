@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="card mb-4 col-lg-6" *ngIf="authService.userData as user">
+    <div class="card-body">
+      <img src="{{(user.photoURL) ? user.photoURL : 'assets/images/dummy-user.png'}}" alt="{{user.displayName}}"
+        align="right" height="100" style="max-height: 100px; border: 1px solid grey;">
+      <h5 class="card-title">Detail uživatele {{ user.displayName }}</h5>
+      <div class="card-text">
+        <span *ngIf="user.emailVerified"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">✓
+          <span class="visually-hidden">ověřený e-mail</span>
+        </span>
+
+        <p>E-mail: <strong>{{user.email}}</strong></p>
+
+        <p>ID: <strong>{{user.uid}}</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
