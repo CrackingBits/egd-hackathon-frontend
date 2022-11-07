@@ -1,3 +1,12 @@
+
+
+# [1.3.0](https://github.com/CrackingBits/egd-hackathon-frontend/compare/1.2.3...1.3.0) (2022-11-07)
+
+
+### Features
+
+* Add footer with links, update README, fix test compilation ([e2e2419](https://github.com/CrackingBits/egd-hackathon-frontend/commit/e2e2419b94e6c70e80696711182348a1d31809c8))
+
 ## [1.2.3](https://github.com/CrackingBits/egd-hackathon-frontend/compare/1.2.2...1.2.3) (2022-11-07)
 
 - Malé refaktory před opensourcingem
