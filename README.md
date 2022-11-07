@@ -4,8 +4,6 @@
 
 Photovoltaic energy community savings calculation and tracking
 
-# Project Description
-
 Live [DEMO](https://hackaference.web.app) in Czech  
 [![2022-11-07_12-30](https://user-images.githubusercontent.com/932761/200299876-1a5d9ba4-f3d3-4f33-8bce-65e1ba36d258.png)](https://hackaference.web.app)  
 https://hackaference.web.app
